@@ -122,6 +122,13 @@ module ActionController
       MODULES - modules
     end
 
+    # This method fixes Issue #214 when trying to test controller using Rspec
+    # In rails by defauld this method check for Html Template Existance
+    # override this behavior because in API there are no html templates
+    def _find_action_name(action_name)
+      _valid_action_name?(action_name)
+    end
+
     MODULES = [
       UrlFor,
       Redirecting,
